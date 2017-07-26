@@ -10,28 +10,33 @@ import UIKit
 
 class CompleteViewController: UIViewController {
     //vars
-    var task = Task()
-    var previousViewCon = ViewController()
+    var task : Task? = nil
+
 
     @IBOutlet var taskName: UILabel!
     //complete button deletes task and returns to main screen
     @IBAction func completeBtn(_ sender: Any) {
-        //deletes task
-        previousViewCon.tasks.remove(at: previousViewCon.selected)
-        //reload tasks on previous vc
-        previousViewCon.tab.reloadData()
+
+        //access to core data
+        let ctx = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        //deltes task
+        ctx.delete(task!)
+        //save delete
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
         //reload previous vc
         navigationController?.popViewController(animated: true)
     }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //sets the lable
-        if task.important
+        if task!.important
         {
-            taskName.text = "‼️\(task.name)"
+            taskName.text = "‼️\(task!.name!)"
             
         }else{
-            taskName.text = task.name
+            taskName.text = task!.name!
         }
 
         

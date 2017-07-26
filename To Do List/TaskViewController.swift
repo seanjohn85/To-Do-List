@@ -9,23 +9,21 @@
 import UIKit
 
 class TaskViewController: UIViewController {
-    
-    //link to previous view controller
-    var previousViewCon = ViewController()
+
     
     //ui elemends
     @IBOutlet var name: UITextField!
     @IBOutlet var important: UISwitch!
     //add button funtion to add a task to the tasks array in the previous vc
     @IBAction func add(_ sender: Any) {
+        //access to core data
+        let ctx = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         //create a new task
-        let task = Task()
+        let task = Task(context: ctx)
         task.name = name.text!
         task.important = important.isOn
-        //send to previous view
-        previousViewCon.tasks.append(task)
-        //reload tasks on previous vc
-        previousViewCon.tab.reloadData()
+        //save task
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
         //reload previous vc
         navigationController?.popViewController(animated: true)
     }
@@ -40,15 +38,5 @@ class TaskViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

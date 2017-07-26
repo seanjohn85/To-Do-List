@@ -12,14 +12,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     var tasks = [Task]()
-    var selected = 0
+
     //link to previous view controller
     
     @IBOutlet var tab: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        //create dummy tasks
-        tasks = makeTasks()
+
         tab.delegate = self
         tab.dataSource = self
         
@@ -29,18 +28,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return tasks.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //sets selected row (needed for deleet
-        selected = indexPath.row
+
         //sets the cell
         let cel = UITableViewCell()
         let task = tasks[indexPath.row]
         //sets the cell text
         if task.important
         {
-            cel.textLabel?.text = "‼️\(task.name)"
+            cel.textLabel?.text = "‼️\(task.name!)"
             
         }else{
-            cel.textLabel?.text = task.name
+            cel.textLabel?.text = task.name!
         }
         
         return cel
@@ -50,21 +48,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let task =  tasks[indexPath.row]
         performSegue(withIdentifier: "selectTask", sender: task)
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    //when the view is about to display
+    override func viewWillAppear(_ animated: Bool) {
+        getTasksFromCoreData()
+        tab.reloadData()
     }
     
-    
-    func makeTasks() -> [Task]{
-        let t1 = Task()
-        t1.name = "test"
-        let t2 = Task()
-        t2.name = "test2"
-        return [t1, t2]
+    func getTasksFromCoreData(){
+        //access to core data
+        let ctx = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        //fetch the data from core data -- needs error handling
+        do{
+            tasks = try ctx.fetch(Task.fetchRequest()) as! [Task]
+        }catch{
+            print("error getting data")
+        }
+        
     }
-    
     
     
     @IBAction func add(_ sender: Any) {
@@ -73,14 +73,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //passes info to the next screen
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //for the add screen pass this vc to acees the array
-        if segue.identifier == "add"{
-            let nextVC = segue.destination as! TaskViewController
-            nextVC.previousViewCon = self
-            //the complete pass the task and this vc
-        }else{
+        if segue.identifier == "selectTask" {
             let nextVC = segue.destination as! CompleteViewController
-            nextVC.task = sender as! Task
-            nextVC.previousViewCon = self
+            nextVC.task = sender as? Task
+
             
         }
         
