@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C950E1DD1F29355100FCCDB4 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C950E1DC1F29355100FCCDB4 /* TaskViewController.swift */; };
+		C950E1DF1F29450400FCCDB4 /* CompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C950E1DE1F29450400FCCDB4 /* CompleteViewController.swift */; };
 		C9F8EE011F268FD30027D771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F8EE001F268FD30027D771 /* AppDelegate.swift */; };
 		C9F8EE031F268FD30027D771 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F8EE021F268FD30027D771 /* ViewController.swift */; };
 		C9F8EE061F268FD30027D771 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9F8EE041F268FD30027D771 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		C950E1DC1F29355100FCCDB4 /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
+		C950E1DE1F29450400FCCDB4 /* CompleteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteViewController.swift; sourceTree = "<group>"; };
 		C9F8EDFD1F268FD30027D771 /* To Do List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "To Do List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F8EE001F268FD30027D771 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9F8EE021F268FD30027D771 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 			children = (
 				C9F8EE001F268FD30027D771 /* AppDelegate.swift */,
 				C9F8EE021F268FD30027D771 /* ViewController.swift */,
+				C950E1DE1F29450400FCCDB4 /* CompleteViewController.swift */,
 				C9F8EE151F2691230027D771 /* Task.swift */,
 				C9F8EE041F268FD30027D771 /* Main.storyboard */,
 				C950E1DC1F29355100FCCDB4 /* TaskViewController.swift */,
@@ -151,6 +154,7 @@
 				C950E1DD1F29355100FCCDB4 /* TaskViewController.swift in Sources */,
 				C9F8EE091F268FD30027D771 /* To_Do_List.xcdatamodeld in Sources */,
 				C9F8EE011F268FD30027D771 /* AppDelegate.swift in Sources */,
+				C950E1DF1F29450400FCCDB4 /* CompleteViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
